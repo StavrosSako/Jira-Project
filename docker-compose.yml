@@ -62,6 +62,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    ports:
+      - "3001:3001"
     networks:
       - jira_network
     restart: unless-stopped
