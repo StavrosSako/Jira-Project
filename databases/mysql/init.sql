@@ -14,4 +14,4 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (username, email, password_hash, role) VALUES
-('admin', 'stivris@project.com', '$2a$10$yeCOTA1fPecTBLVB21uCFOY.Vz4c7oRlfc2kIwsyXSyKiUPkh5p2e', 'admin')
+('admin', 'stivris@project.com', '$2a$10$yeCOTA1fPecTBLVB21uCFOY.Vz4c7oRlfc2kIwsyXSyKiUPkh5p2e', 'admin');
