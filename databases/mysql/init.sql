@@ -14,7 +14,4 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (username, email, password_hash, role) VALUES
-('admin', 'admin@jira.local', '$2a$10$cM9KpQn1RCF0Ok6zyTrwJ.fIMNHhhzzLe27Y5ytTUzHnoOmwhqTRi', 'admin'),
-('leader1', 'leader1@jira.local', '$2a$10$cM9KpQn1RCF0Ok6zyTrwJ.fIMNHhhzzLe27Y5ytTUzHnoOmwhqTRi', 'team_leader'),
-('member1', 'member1@jira.local', '$2a$10$cM9KpQn1RCF0Ok6zyTrwJ.fIMNHhhzzLe27Y5ytTUzHnoOmwhqTRi', 'member');
-
+('admin', 'stivris@project.com', '$2a$10$yeCOTA1fPecTBLVB21uCFOY.Vz4c7oRlfc2kIwsyXSyKiUPkh5p2e', 'admin')
