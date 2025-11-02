@@ -1,0 +1,219 @@
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #e6eaef 0%, #dae0e5 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+.circle-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #045149 0%, #21664d 100%);
+    top: -100px;
+    left: -100px;
+}
+
+.circle-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #21664d 0%, #bfdbdd 100%);
+    bottom: -50px;
+    right: -50px;
+}
+
+.circle-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #045149 0%, #003a37 100%);
+    top: 50%;
+    right: 20%;
+}
+
+.auth-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-card {
+    background: #f2f0e4;
+    border: 1px solid #e2dfd5;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(4, 81, 73, 0.15);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #045149;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    font-size: 1rem;
+    color: #21664d;
+}
+
+.auth-error {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-left: 4px solid #dc2626;
+    color: #dc2626;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.auth-success {
+    background: rgba(22, 163, 74, 0.1);
+    border: 1px solid rgba(22, 163, 74, 0.3);
+    border-left: 4px solid #16a34a;
+    color: #16a34a;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #045149;
+}
+
+.form-input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2dfd5;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: white;
+    color: #21664d;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #045149;
+    box-shadow: 0 0 0 4px rgba(4, 81, 73, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ec5c6;
+}
+
+.auth-button {
+    padding: 0.875rem;
+    background: linear-gradient(135deg, #045149 0%, #003a37 100%);
+    color: #f2f0e4;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 16px rgba(4, 81, 73, 0.3);
+}
+
+.auth-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 81, 73, 0.4);
+}
+
+.auth-button-disabled {
+    background: #dae0e5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2dfd5;
+}
+
+.auth-footer p {
+    color: #21664d;
+    font-size: 0.95rem;
+}
+
+.auth-link {
+    color: #045149;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #003a37;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 2rem;
+    }
+
+    .auth-title {
+        font-size: 1.75rem;
+    }
+
+    .circle-1 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .circle-2 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .circle-3 {
+        width: 150px;
+        height: 150px;
+    }
+}
+

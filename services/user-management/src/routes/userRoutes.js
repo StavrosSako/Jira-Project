@@ -18,6 +18,8 @@ router.get('/users', authenticateToken, authorizeRole('admin', 'team_leader'), u
 router.get('/users/:id', authenticateToken, userController.getUserById);
 router.put('/users/:id', authenticateToken, authorizeRole('admin'), userController.updateUser);
 router.delete('/users/:id', authenticateToken, authorizeRole('admin'), userController.deleteUser);
+router.patch('/users/:id/approve', authenticateToken, authorizeRole('admin'), userController.approveUser);
+router.patch('/users/:id/reject', authenticateToken, authorizeRole('admin'), userController.rejectUser);
 
-module.exports = router;
+export default router;
 

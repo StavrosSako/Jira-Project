@@ -1,22 +1,21 @@
-import bcrypt from 'bcrypt.js';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../config/database.js';
 import config from '../config/config.js';
 
-
 const register = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await db.execute(
-      'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)',
-      [username, email, hashedPassword, role || 'member']
+      'INSERT INTO users (username, email, password_hash, role, status) VALUES (?, ?, ?, ?, ?)',
+      [username, email, hashedPassword, 'member', 'pending']
     );
 
     res.status(201).json({
-      message: 'User created successfully',
+      message: 'Registration request submitted. Waiting for admin approval.',
       userId: result.insertId
     });
   } catch (error) {
@@ -47,6 +46,10 @@ const login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    if (user.status !== 'active') {
+      return res.status(403).json({ error: 'Account is pending admin approval' });
+    }
+
     const token = jwt.sign(
       {
         userId: user.id,
@@ -75,7 +78,7 @@ const login = async (req, res) => {
 const getUsers = async (req, res) => {
   try {
     const [users] = await db.execute(
-      'SELECT id, username, email, role, created_at FROM users'
+      'SELECT id, username, email, role, status, created_at FROM users'
     );
 
     res.json(users);
@@ -89,7 +92,7 @@ const getUserById = async (req, res) => {
     const { id } = req.params;
 
     const [users] = await db.execute(
-      'SELECT id, username, email, role, created_at FROM users WHERE id = ?',
+      'SELECT id, username, email, role, status, created_at FROM users WHERE id = ?',
       [id]
     );
 
@@ -142,12 +145,52 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = {
+const approveUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const [result] = await db.execute(
+      'UPDATE users SET status = ? WHERE id = ?',
+      ['active', id]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({ message: 'User approved successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to approve user' });
+  }
+};
+
+const rejectUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const [result] = await db.execute(
+      'UPDATE users SET status = ? WHERE id = ?',
+      ['rejected', id]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({ message: 'User rejected successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to reject user' });
+  }
+};
+
+export default {
   register,
   login,
   getUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  approveUser,
+  rejectUser
 };
 

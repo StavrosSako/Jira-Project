@@ -128,7 +128,7 @@ services:
       - jira_network
     restart: unless-stopped
 
-  # Frontend Service (Next.js)
+  # Frontend Service (Vite)
   frontend:
     build:
       context: ./services/frontend
@@ -136,8 +136,7 @@ services:
     container_name: jira_frontend
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_URL: http://gateway
-      PORT: 3000
+      VITE_API_URL: http://gateway
     depends_on:
       - gateway
     networks:
